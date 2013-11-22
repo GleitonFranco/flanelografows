@@ -22,6 +22,7 @@ public class TabelaServlet extends HttpServlet {
 	public final String ATUALIZAR = "Atualizar";
 	public final String INSERIR = "Inserir";
 	public final String APAGAR = "Apagar";
+	public final String TITULO = "Tabela de Horários";
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -37,9 +38,7 @@ public class TabelaServlet extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 
-		String title = "TABELA DE HORÁRIOS";
-
-		out.println("<title>" + title + "</title>");
+		out.println("<title>" + TITULO + "</title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
 
