@@ -44,18 +44,12 @@ public class TabelaServlet extends HttpServlet {
 		out.println("<body bgcolor=\"white\">");
 
 		out.println("<form action=\"tabela\" >"); // method=\"post\"
-		out.println("<table border=1 bgcolor='yellow' width=100%>");
+		out.println("<table border=1 bgcolor='yellow' width='100%'>");
 //		out.println("<col width=\"100\">");
-//		out.println("<col width=\"100\">");
-//		out.println("<col width=\"100\">");
-//		out.println("<col width=\"100\">");
-//		out.println("<col width=\"50\">");
-//		out.println("<col width=\"50\">");
-//		out.println("<col width=\"50\">");
-//		out.println("<col width=\"80\">");
 		out.println("<tr>");
-		out.println("<td bgcolor='#aaddbb'>");
-		out.println("LINHA");
+//		out.println("<td bgcolor='#aaddbb'>");
+//		out.println("LINHA");
+//		out.println("</td>")
 		out.println("<td>");
 		out.println("CURSO");
 		out.println("</td>");
@@ -88,9 +82,9 @@ public class TabelaServlet extends HttpServlet {
 		int n=0;
 		for (Disciplina d : quadro.lista) {
 			out.println("<tr>");
-			out.println("<td bgcolor='#aaddbb'>");
-			out.println(n);
-			out.println("</td>");
+//			out.println("<td bgcolor='#aaddbb'>");
+//			out.println(n);
+//			out.println("</td>");
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"curso"+n+"\" value=\""+d.curso+"\"/><br />");
 			out.println("</td>");
@@ -125,8 +119,6 @@ public class TabelaServlet extends HttpServlet {
 
 		out.println("</table>");
 		out.println("<input type=\"submit\" name=\"action\" value=\"Inserir\" />");
-		out.println("<input type=\"submit\" name=\"action\" value=\"Apagar\" />");
-		out.println("<input type=\"text\" name=\"linha_apaga\">");
 		out.println("</form>");
 		out.println("</body>");
 		out.println("</html>");
