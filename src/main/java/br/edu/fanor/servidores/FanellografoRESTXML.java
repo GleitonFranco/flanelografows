@@ -19,7 +19,7 @@ public class FanellografoRESTXML {
 	
 	@GET
 	@Path("{curso}")
-	@Produces("application/xml")
+	@Produces("text/plain")
 	public String consultaSala(@PathParam("curso") String curso) {
 		StringWriter writer = new StringWriter();
 		JAXB.marshal(quadro.consultaSala(curso),writer);

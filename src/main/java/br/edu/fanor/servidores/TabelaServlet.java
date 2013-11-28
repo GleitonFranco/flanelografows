@@ -44,11 +44,13 @@ public class TabelaServlet extends HttpServlet {
 
 		out.println("<form action=\"tabela\" >"); // method=\"post\"
 		out.println("<table border=1 bgcolor='yellow' width='100%'>");
-//		out.println("<col width=\"100\">");
+
+		//        DEFINICAO DO CABECALHO DA TABELA  
+		
 		out.println("<tr>");
-//		out.println("<td bgcolor='#aaddbb'>");
-//		out.println("LINHA");
-//		out.println("</td>")
+		out.println("<td bgcolor='#aaddbb'>");
+		out.println("CÓD.");
+		out.println("</td>");
 		out.println("<td>");
 		out.println("CURSO");
 		out.println("</td>");
@@ -78,12 +80,13 @@ public class TabelaServlet extends HttpServlet {
 		out.println("</td>");
 		out.println("</tr>");
 
+//		           LOOP PARA GERAR O CONTEUDO DA TABELA
 		int n=0;
 		for (Disciplina d : quadro.lista) {
 			out.println("<tr>");
-//			out.println("<td bgcolor='#aaddbb'>");
-//			out.println(n);
-//			out.println("</td>");
+			out.println("<td bgcolor='#aaddbb'>");
+			out.println(quadro.lista_cursos.indexOf(d.curso));
+			out.println("</td><br/>");
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"curso"+n+"\" value=\""+d.curso+"\"/><br />");
 			out.println("</td>");
@@ -119,6 +122,11 @@ public class TabelaServlet extends HttpServlet {
 		out.println("</table>");
 		out.println("<input type=\"submit\" name=\"action\" value=\"Inserir\" />");
 		out.println("</form>");
+		
+		// LISTA DOS NOMES DOS CURSOS, PARA CONSULTA DO OPERADOR
+		for (String s : quadro.lista_cursos) {
+			out.println(s+"<br />");
+		}
 		out.println("</body>");
 		out.println("</html>");
 	}

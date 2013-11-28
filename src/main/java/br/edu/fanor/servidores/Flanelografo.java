@@ -20,34 +20,53 @@ public class Flanelografo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6186742489880036386L;
-	private static Flanelografo instance;
+	private static Flanelografo instance=null;
 	public List<Disciplina> lista;
+	public List<String> lista_cursos;
 	
 	private Flanelografo() {
-//		lista = new ArrayList<Disciplina>();
+		lista_cursos = new ArrayList<String>();
+		lista_cursos.add("");
+        lista_cursos.add("Análise e Des. de Sistemas");
+		lista_cursos.add("Design de Moda");
+		lista_cursos.add("Design Gráfico");
+		lista_cursos.add("Gastronomia");
+		lista_cursos.add("Gestão de TI");
+		lista_cursos.add("Redes de Computadores");
+		lista_cursos.add("Administração");
+		lista_cursos.add("Arquitetura e Urbanismo");
+		lista_cursos.add("Ciências Contábeis");
+		lista_cursos.add("Design");
+		lista_cursos.add("Direito");
+		lista_cursos.add("Educação Física");
+		lista_cursos.add("Enfermagem");
+		lista_cursos.add("Engenharia Ambiental e Sanitária");
+		lista_cursos.add("Engenharia Civil");
+		lista_cursos.add("Engenharia de Produção");
+		lista_cursos.add("Engenharia Elétrica");
+		lista_cursos.add("Engenharia Mecânica");
+		lista_cursos.add("Engenharia Química");
+		lista_cursos.add("Fisioterapia");
+		lista_cursos.add("Jornalismo");
+		lista_cursos.add("Nutrição");
+		lista_cursos.add("Psicologia");
+		lista_cursos.add("Publicidade e Propaganda");
+		lista_cursos.add("Rádio, TV e Internet");
+		lista_cursos.add("Sistemas de Informação");
+		lista_cursos.add("Turismo");
 		carregar();
-//		lista.add(new Disciplina("SI","Algoritmos","110","Gustavo","M","TER","1"));
-//		lista.add(new Disciplina("ADS","Calculo","208","Everardo","N","SEG","2"));
-//		lista.add(new Disciplina("Enfermagem","Anatomia","300","Frankstein","T","QUA","3"));
-//		lista.add(new Disciplina("ADS","Programação Web","Lab.Inf-1","Patrick","N","QUI","4"));
-//		lista.add(new Disciplina("ADS","Topicos ADS","200","Josenio","N","QUI","5"));
-//		lista.add(new Disciplina("ADS","Estatística","250","Josenio","N","SEX","3"));
 	}
 	
 	public static Flanelografo getInstance() {
-		if (instance==null) {
-//			instance = new Flanelografo();
-			carregar();
+		if (Flanelografo.instance==null) {
+			Flanelografo.instance = new Flanelografo();
 		}
-		return instance;
+		return Flanelografo.instance;
 	}
 	
-	public String consultaSala(String nCurso) {
-		String curso = "";
+	public String consultaSala(String numeroCurso) {
+		String curso = lista_cursos.get(Integer.parseInt(numeroCurso));
 		String resposta = "";
-		if (nCurso.equals("19")) curso="ADS";
-		if (nCurso.equals("2")) curso="SI";
-		if (nCurso.equals("3")) curso="Enfermagem";
 		for (Disciplina d : lista) {
 			if (d.curso.equals(curso)) resposta += d.nome+" "+d.sala+"\n";
 		}
@@ -58,13 +77,13 @@ public class Flanelografo implements Serializable {
 		Collections.sort(lista);
 	}
 	
-	public static void carregar() {
+	public void carregar() {
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("quadro.ser"));
 			instance = (Flanelografo) is.readObject();
 			is.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			criarDoNada();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -82,6 +101,16 @@ public class Flanelografo implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void criarDoNada() {
+		lista = new ArrayList<Disciplina>();
+		lista.add(new Disciplina("SI","Algoritmos","110","Gustavo","M","TER","1"));
+		lista.add(new Disciplina("ADS","Calculo","208","Newton","N","SEG","2"));
+		lista.add(new Disciplina("Enfermagem","Anatomia","300","Girafales","T","QUA","3"));
+		lista.add(new Disciplina("ADS","Programação Web","Lab.Inf-1","Patrick","N","QUI","4"));
+		lista.add(new Disciplina("ADS","Topicos ADS","200","Josenio","N","QUI","5"));
+		lista.add(new Disciplina("ADS","Estatística","250","Pardal","N","SEX","3"));
 	}
 
 	
