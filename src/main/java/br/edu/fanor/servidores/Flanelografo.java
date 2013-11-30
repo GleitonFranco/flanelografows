@@ -20,7 +20,7 @@ public class Flanelografo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6186742489880036386L;
-	private static Flanelografo instance=null;
+	private static Flanelografo instance;
 	public List<Disciplina> lista;
 	public List<String> lista_cursos;
 	
@@ -54,12 +54,21 @@ public class Flanelografo implements Serializable {
 		lista_cursos.add("Rádio, TV e Internet");
 		lista_cursos.add("Sistemas de Informação");
 		lista_cursos.add("Turismo");
-		carregar();
+		
+		lista = new ArrayList<Disciplina>();
+		lista.add(new Disciplina("Sistemas de Informação","Algoritmos","110","Gustavo","M","TER","1"));
+		lista.add(new Disciplina("Análise e Des. de Sistemas","Calculo","208","Newton","N","SEG","2"));
+		lista.add(new Disciplina("Enfermagem","Anatomia","300","Girafales","T","QUA","3"));
+		lista.add(new Disciplina("Análise e Des. de Sistemas","Programação Web","Lab.Inf-1","Patrick","N","QUI","4"));
+		lista.add(new Disciplina("Análise e Des. de Sistemas","Topicos ADS","200","Josenio","N","QUI","5"));
+		lista.add(new Disciplina("Análise e Des. de Sistemas","Estatística","250","Pardal","N","SEX","3"));
+
 	}
 	
 	public static Flanelografo getInstance() {
 		if (Flanelografo.instance==null) {
-			Flanelografo.instance = new Flanelografo();
+//			Flanelografo.instance = new Flanelografo();
+			carregar();
 		}
 		return Flanelografo.instance;
 	}
@@ -77,8 +86,9 @@ public class Flanelografo implements Serializable {
 		Collections.sort(lista);
 	}
 	
-	public void carregar() {
+	public static void carregar() {
 		try {
+			
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("quadro.ser"));
 			instance = (Flanelografo) is.readObject();
 			is.close();
@@ -103,14 +113,8 @@ public class Flanelografo implements Serializable {
 		}
 	}
 	
-	public void criarDoNada() {
-		lista = new ArrayList<Disciplina>();
-		lista.add(new Disciplina("SI","Algoritmos","110","Gustavo","M","TER","1"));
-		lista.add(new Disciplina("ADS","Calculo","208","Newton","N","SEG","2"));
-		lista.add(new Disciplina("Enfermagem","Anatomia","300","Girafales","T","QUA","3"));
-		lista.add(new Disciplina("ADS","Programação Web","Lab.Inf-1","Patrick","N","QUI","4"));
-		lista.add(new Disciplina("ADS","Topicos ADS","200","Josenio","N","QUI","5"));
-		lista.add(new Disciplina("ADS","Estatística","250","Pardal","N","SEX","3"));
+	public static void criarDoNada() {
+		instance = new Flanelografo();
 	}
 
 	

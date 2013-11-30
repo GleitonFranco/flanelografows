@@ -103,7 +103,17 @@ public class TabelaServlet extends HttpServlet {
 			out.println("<input type=\"text\" name=\"turno"+n+"\" value=\""+d.turno+"\"/><br />");
 			out.println("</td>");
 			out.println("<td>");
-			out.println("<input type=\"text\" name=\"dia"+n+"\" value=\""+d.dia+"\"/><br />");
+			
+			out.println("<select name='dia"+n+"' value='"+d.dia+"' >");
+			out.println("<option value='SEG' "+("SEG".equals(d.dia)?"SELECTED":"")+">SEG</option>");
+			out.println("<option value='TER' "+("TER".equals(d.dia)?"SELECTED":"")+">TER</option>");
+			out.println("<option value='QUA' "+("QUA".equals(d.dia)?"SELECTED":"")+">QUA</option>");
+			out.println("<option value='QUI' "+("QUI".equals(d.dia)?"SELECTED":"")+">QUI</option>");
+			out.println("<option value='SEX' "+("SEX".equals(d.dia)?"SELECTED":"")+">SEX</option>");
+			out.println("<option value='SAB' "+("SAB".equals(d.dia)?"SELECTED":"")+">SAB</option>");
+			out.println("</select>");
+//			out.println("<input type=\"text\" name=\"dia"+n+"\" value=\""+d.dia+"\"/><br />");
+			
 			out.println("</td>");
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"semestre"+n+"\" value=\""+d.semestre+"\"/><br />");
