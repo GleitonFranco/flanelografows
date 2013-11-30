@@ -28,6 +28,7 @@ public class Disciplina implements Serializable,Comparable<Disciplina> {
 
 //	@Override
 	public int compareTo(Disciplina d) {
+		// As disciplinas serão ordenadas seguindo as ordens crescentes: TURNO , DIA DA SEMANA, CURSO
 		if (turno.compareTo(d.turno)!=0)
 			return turno.compareTo(d.turno);
 		if (dia.compareTo(d.dia)!=0)

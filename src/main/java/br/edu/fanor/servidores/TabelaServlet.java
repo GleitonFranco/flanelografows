@@ -3,7 +3,10 @@ package br.edu.fanor.servidores;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +36,6 @@ public class TabelaServlet extends HttpServlet {
 		}
 		System.out.println("******* ACTION=======> "+request.getParameter("action"));
 		quadro.ordenaLista();
-		Collections.sort(quadro.lista);
 
 		out.println("<html>");
 		out.println("<head>");
@@ -85,11 +87,11 @@ public class TabelaServlet extends HttpServlet {
 		for (Disciplina d : quadro.lista) {
 			out.println("<tr>");
 			out.println("<td bgcolor='#aaddbb'>");
-			out.println(quadro.lista_cursos.indexOf(d.curso));
+			out.println(quadro.listaCursos.indexOf(d.curso));
 			out.println("</td><br/>");
-			out.println("<td>");
-			out.println("<input type=\"text\" name=\"curso"+n+"\" value=\""+d.curso+"\"/><br />");
-			out.println("</td>");
+			
+			fazCombo("curso"+n, d.curso, quadro.listaCursos, out);
+			
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"nome"+n+"\" value=\""+d.nome+"\"/><br />");
 			out.println("</td>");
@@ -99,22 +101,11 @@ public class TabelaServlet extends HttpServlet {
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"prof"+n+"\" value=\""+d.prof+"\"/><br />");
 			out.println("</td>");
-			out.println("<td>");
-			out.println("<input type=\"text\" name=\"turno"+n+"\" value=\""+d.turno+"\"/><br />");
-			out.println("</td>");
-			out.println("<td>");
 			
-			out.println("<select name='dia"+n+"' value='"+d.dia+"' >");
-			out.println("<option value='SEG' "+("SEG".equals(d.dia)?"SELECTED":"")+">SEG</option>");
-			out.println("<option value='TER' "+("TER".equals(d.dia)?"SELECTED":"")+">TER</option>");
-			out.println("<option value='QUA' "+("QUA".equals(d.dia)?"SELECTED":"")+">QUA</option>");
-			out.println("<option value='QUI' "+("QUI".equals(d.dia)?"SELECTED":"")+">QUI</option>");
-			out.println("<option value='SEX' "+("SEX".equals(d.dia)?"SELECTED":"")+">SEX</option>");
-			out.println("<option value='SAB' "+("SAB".equals(d.dia)?"SELECTED":"")+">SAB</option>");
-			out.println("</select>");
-//			out.println("<input type=\"text\" name=\"dia"+n+"\" value=\""+d.dia+"\"/><br />");
+			fazCombo("turno"+n,d.turno, quadro.listaTurnos, out);
+
+			fazCombo("dia"+n,d.dia, quadro.listaDias, out);
 			
-			out.println("</td>");
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"semestre"+n+"\" value=\""+d.semestre+"\"/><br />");
 			out.println("</td>");
@@ -133,10 +124,6 @@ public class TabelaServlet extends HttpServlet {
 		out.println("<input type=\"submit\" name=\"action\" value=\"Inserir\" />");
 		out.println("</form>");
 		
-		// LISTA DOS NOMES DOS CURSOS, PARA CONSULTA DO OPERADOR
-		for (String s : quadro.lista_cursos) {
-			out.println(s+"<br />");
-		}
 		out.println("</body>");
 		out.println("</html>");
 	}
@@ -165,6 +152,16 @@ public class TabelaServlet extends HttpServlet {
 			quadro.lista.remove(Integer.parseInt(acao[1]));
 			quadro.salva();
 		}
+	}
+	
+	public void fazCombo(String coluna, String selecionado, List<String> lista, PrintWriter out) {
+		out.println("<td>");
+		out.println("<select name='"+coluna+"' >");
+		for (String item : lista) {
+			out.println("<option value='"+item+"' "+(item.equals(selecionado)?"SELECTED":"")+">"+item+"</option>");
+		}
+		out.println("</select>");
+		out.println("</td>");
 	}
 
 }
