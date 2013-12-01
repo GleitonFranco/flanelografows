@@ -102,9 +102,9 @@ public class TabelaServlet extends HttpServlet {
 			out.println("<input type=\"text\" name=\"prof"+n+"\" value=\""+d.prof+"\"/><br />");
 			out.println("</td>");
 			
-			fazCombo("turno"+n,d.turno, quadro.listaTurnos, out);
+			fazCombo("turno"+n,d.turno, Disciplina.listaTurnos, out);
 
-			fazCombo("dia"+n,d.dia, quadro.listaDias, out);
+			fazCombo("dia"+n,d.dia, Disciplina.listaDias, out);
 			
 			out.println("<td>");
 			out.println("<input type=\"text\" name=\"semestre"+n+"\" value=\""+d.semestre+"\"/><br />");

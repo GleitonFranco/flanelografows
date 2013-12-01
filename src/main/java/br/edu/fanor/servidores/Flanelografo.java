@@ -24,8 +24,6 @@ public class Flanelografo implements Serializable {
 	private static Flanelografo instance;
 	public List<Disciplina> lista;
 	public List<String> listaCursos;
-	public List<String> listaTurnos;
-	public List<String> listaDias;
 	
 	private Flanelografo() {
 		listaCursos = new ArrayList<String>();
@@ -66,10 +64,6 @@ public class Flanelografo implements Serializable {
 		lista.add(new Disciplina("Análise e Des. de Sistemas","Topicos ADS","200","Josenio","N","QUI","5"));
 		lista.add(new Disciplina("Análise e Des. de Sistemas","Estatística","250","Pardal","N","SEX","3"));
 		
-		listaTurnos = Arrays.asList(new String[]{"M","T","N"});
-		
-		listaDias = Arrays.asList(new String[]{"SEG","TER","QUA","QUI","SEX"});
-
 	}
 	
 	public static Flanelografo getInstance() {
