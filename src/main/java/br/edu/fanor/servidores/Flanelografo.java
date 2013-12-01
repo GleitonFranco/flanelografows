@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -76,9 +77,32 @@ public class Flanelografo implements Serializable {
 	
 	public String consultaSala(String numeroCurso) {
 		String curso = listaCursos.get(Integer.parseInt(numeroCurso));
+		
+		Calendar calendario = Calendar.getInstance();
+		int diaSemana = calendario.get(Calendar.DAY_OF_WEEK);
+		int hora = calendario.get(Calendar.HOUR_OF_DAY);
+		String diaAtual = "SEG";
+		switch (diaSemana) {
+			case 2 : diaAtual = "SEG";
+			case 3 : diaAtual = "TER";
+			case 4 : diaAtual = "QUA";
+			case 5 : diaAtual = "QUI";
+			case 6 : diaAtual = "SEX";
+		}
+		String turnoAtual = "T";
+		if (hora < 12) {
+			turnoAtual = "M";
+		} else {
+			if (hora > 18) {
+				turnoAtual = "N";
+			}
+		}
+		
 		String resposta = "";
 		for (Disciplina d : lista) {
-			if (d.curso.equals(curso)) resposta += d.nome+" "+d.sala+"\n";
+			if (d.curso.equals(curso) && d.turno.equals(turnoAtual) && d.dia.equals(diaAtual)) {
+				resposta += d.nome+" "+d.sala+"\n";
+			}
 		}
 		return resposta;
 	}
